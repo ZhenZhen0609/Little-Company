@@ -45,7 +45,15 @@ body {
 /* 团子结构 */
 .tilt-box { position: relative; transition: transform 0.2s ease-out; perspective: 600px; z-index: 10; }
 .breath-wrap { transition: transform 0.6s ease-in-out; position: relative; }
-.spirit { width: 135px; height: 115px; background: var(--spirit-main); border-radius: 50% 50% 45% 45%; position: relative; box-shadow: 0 0 35px rgba(255,255,255,0.2); cursor: pointer; transform-origin: center bottom; touch-action: none; transition: background 0.5s, box-shadow 0.5s; }
+.spirit { 
+    width: 135px; height: 115px; background: var(--spirit-main); border-radius: 50% 50% 45% 45%; 
+    position: relative; box-shadow: 0 0 35px rgba(255,255,255,0.2); cursor: pointer; 
+    transform-origin: center bottom; 
+    /* 核心：确保手机不误判手势 */
+    touch-action: none; 
+    /* 核心：缩短过渡时间，让揉捏跟随手指更即时 */
+    transition: transform 0.1s linear, background 0.5s, box-shadow 0.5s; 
+}
 
 /* 动画特效 */
 .breath-inhale { transition: transform 4s ease-in-out !important; transform: scale(1.6) !important; }
@@ -90,7 +98,4 @@ body {
 .dock { position: fixed; bottom: 30px; display: flex; gap: 15px; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 40px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); z-index: 100; transition: opacity 1s; }
 .dock-item { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; font-size: 1.3rem; transition: 0.3s; opacity: 0.6; }
 .dock-item.active { opacity: 1; background: rgba(255,255,255,0.2); }
-#focus-timer { font-size: 2.8rem; font-weight: 200; margin-bottom: 20px; letter-spacing: 2px; display: none; }
 #onboarding { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; z-index: 2000; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; }
-
-.gift-cloud, .trouble-cloud { position: fixed; padding: 8px 15px; border-radius: 20px; z-index: 2000; transition: all 1s cubic-bezier(0.6, -0.28, 0.735, 0.045); pointer-events: none; }
