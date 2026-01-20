@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小白团子 Companion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="stars-container"></div>
+    
+    <div class="top-ui">
+        <!-- 幸福等级 Lv 现在也会显示在这里 -->
+        <div class="memory-badge" id="badge-ui" title="双击重置团子记忆" ondblclick="if(confirm('要重置团子记忆吗？')){localStorage.clear();location.reload();}">...</div>
+        <div class="right-tools">
+            <div class="tool-container">
+                <div class="tool-btn" onclick="toggleMenu('bag-menu')">🎒</div>
+                <div id="bag-menu" class="pop-menu">
+                    <a href="https://www.instagram.com/advicewithanson/" target="_blank" class="menu-item portal-item" onclick="teleportReaction()">✨ Anson 的小站</a>
+                    <div class="menu-item" onclick="giveGift('🍪', '小饼干')">🍪 投喂饼干</div>
+                    <div class="menu-item" onclick="giveGift('🍵', '热茶')">🍵 倒杯热茶</div>
+                    <div class="menu-item" onclick="startFocus()">📖 陪我专注</div>
+                </div>
+            </div>
+            <div class="tool-container">
+                <div class="tool-btn" onclick="toggleMenu('note-menu')">✉️</div>
+                <div id="note-menu" class="pop-menu">
+                    <div class="menu-item" onclick="giveNote()">✉️ 抽张纸条</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 起名遮罩 -->
+    <div id="onboarding">
+        <h2 style="margin-bottom: 30px; font-weight: 300;">你好呀，我是小白团子。<br>可以告诉我你的名字吗？</h2>
+        <input type="text" id="name-input" class="input-box" placeholder="你的名字..." maxlength="8">
+        <button class="action-btn" onclick="saveName()">开启陪伴</button>
+    </div>
+
+    <div class="main-stage">
+        <div id="focus-timer">25:00</div>
+        <div class="speech-bubble" id="bubble">...</div>
+
+        <div id="vent-area" style="display: none; flex-direction: column; align-items: center; margin-bottom: 40px; z-index: 100;">
+            <input type="text" id="vent-input" class="input-box" placeholder="把烦恼写在这里..." autocomplete="off">
+            <button class="action-btn" onclick="startSwallowing()">交给团子吃掉</button>
+        </div>
+
+        <div class="tilt-box" id="tilt-box">
+            <div class="zzz" id="zzz">Zzz</div>
+            <div class="joy-aura" id="joy-aura">💖</div>
+            <div class="breath-wrap" id="breath-wrap">
+                <div class="spirit" id="spirit">
+                    <div class="face" id="face">
+                        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+                        <div class="blush-container">
+                            <div class="blush"></div>
+                            <div class="blush"></div>
+                        </div>
+                        <div class="mouth" id="mouth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="exit-focus" class="action-btn" style="position: fixed; bottom: 100px; display: none; z-index: 1000;" onclick="stopFocus()">不学啦，抱抱我</button>
+
+    <div class="dock" id="main-dock">
+        <div class="dock-item active" onclick="switchMode('idle', this)">🏠</div>
+        <div class="dock-item" onclick="switchMode('breath', this)">🌬️</div>
+        <div class="dock-item" onclick="switchMode('vent', this)">🕳️</div>
+        <div class="dock-item" onclick="switchMode('sleep', this)">🌙</div>
+    </div>
+
+    <!-- 核心逻辑引用 -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
